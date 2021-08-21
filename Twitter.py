@@ -4,8 +4,8 @@
 # In[16]:
 
 
-import pandas as pd
-import numpy as np
+#import pandas as pd
+#import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, roc_auc_score
@@ -119,6 +119,9 @@ parameters={'vect__min_df': [1,2,3,4]}
 
 grid_search = GridSearchCV (pipeline, parameters,refit=True)
 grid_search.fit(X_train, y_train);
+
+with open('model.pkl', 'wb') as file:
+    pickle.dump(grid_search, file)
 predictions = grid_search.predict(X_test)
 
 
